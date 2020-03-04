@@ -1,4 +1,4 @@
-﻿namespace Blazor.Pages {
+﻿namespace Blazor.Components.Application {
 
     using System;
     using System.Collections.Generic;
