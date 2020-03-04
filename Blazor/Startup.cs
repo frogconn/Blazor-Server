@@ -6,6 +6,7 @@ namespace Blazor {
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
+    using Syncfusion.EJ2.Blazor;
 
     public class Startup {
 
@@ -38,6 +39,8 @@ namespace Blazor {
         }
 
         public void ConfigureServices(IServiceCollection services) {
+            
+            services.AddHttpClient();
             services.AddRazorPages();
             services.AddServerSideBlazor().AddCircuitOptions(o => {
                 if (this.WebHostEnvironment.IsDevelopment()) {
@@ -45,6 +48,7 @@ namespace Blazor {
                 }
             });
             services.AddMediatR(typeof(Startup));
+            services.AddSyncfusionBlazor();
         }
     }
 }

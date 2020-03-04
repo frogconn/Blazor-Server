@@ -1,6 +1,37 @@
 ﻿@page "/test"
-<h3>Test</h3>
+@using System.Net.Http
+@using System.Text.Json
+@using Blazor.Components.Application.Models
+@inject IHttpClientFactory  _clientFactory
 
+@if (Model != null)
+{
+    <h3>ID : @Model.id</h3>
+    <h3>UserID : @Model.userId</h3>
+    <h3>Title : @Model.title</h3>
+    <h3>Is Completed : @Model.completed</h3>
+}
 @code {
+    private TodoItem Model;
+
+    protected override async Task OnInitializedAsync()
+    {
+
+        var request = new HttpRequestMessage(HttpMethod.Get, "https://jsonplaceholder.typicode.com/todos/1");
+
+        var client = _clientFactory.CreateClient();
+
+        var response = await client.SendAsync(request);
+
+        if (response.IsSuccessStatusCode)
+        {
+            using var responseStream = await response.Content.ReadAsStreamAsync();
+            Model = await JsonSerializer.DeserializeAsync<TodoItem>(responseStream);
+        }
+        else
+        {
+            Model = new TodoItem();
+        }
+    }
 
 }
