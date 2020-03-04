@@ -13,4 +13,7 @@
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
      <PackageReference Include="Syncfusion.EJ2.Blazor" Version="17.4.0.54" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Components\Shared\" />
+  </ItemGroup>
 </Project>
